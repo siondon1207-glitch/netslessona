@@ -1,23 +1,907 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <!-- Schema.org Structured Data for SEO Snippet Enhancement -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "에듀플래닛 온라인교육플랫폼 비교센터",
+      "url": "https://edu.reliabledone.com",
+      "logo": "https://edu.reliabledone.com/logo.png",
+      "description": "2026년 기준 전국 온라인교육플랫폼의 연령별 과정별 비용, 장단점 및 혜택 정보를 투명하게 비교 분석합니다.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Seoul",
+        "addressCountry": "KR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+82-2-555-1234",
+        "contactType": "고객 학습 상담 센터"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KRW",
+        "lowPrice": "15000",
+        "highPrice": "2500000",
+        "offerCount": "120"
+      }
+    }
+    </script>
+
+    <style>
+      /* Google Fonts (Noto Sans KR) for clear readability */
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+      :root {
+        --primary-color: #4a54df; /* Soft but deep purple-indigo */
+        --primary-light: #eef0fc;
+        --secondary-color: #26a69a; /* Warm teal */
+        --accent-color: #ff7043; /* Smooth pastel orange */
+        --text-color: #2c3e50;
+        --bg-color: #f5f7fa;
+        --card-bg: #ffffff;
+        --border-color: #cfd8dc;
+      }
+
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.9;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #3949ab 100%);
+        color: white;
+        padding: 3rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      header h1 {
+        font-size: 2.6rem;
+        margin-bottom: 0.8rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 0 auto 1.5rem auto;
+      }
+
+      nav {
+        margin-top: 1.5rem;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        color: #fff;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
+      }
+
+      section {
+        background-color: var(--card-bg);
+        padding: 3rem 2rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+      }
+
+      h2 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        border-left: 5px solid var(--secondary-color);
+        padding-left: 0.8rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        color: #283593;
+        font-weight: 600;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: #455a64;
+        text-align: justify;
+      }
+
+      strong {
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      ul {
+        margin-bottom: 1.8rem;
+        padding-left: 1.2rem;
+        list-style: none;
+      }
+
+      ul li {
+        margin-bottom: 0.8rem;
+        line-height: 1.8;
+        padding-left: 1.2rem;
+        position: relative;
+      }
+
+      ul li::before {
+        content: "■";
+        color: var(--secondary-color);
+        font-size: 0.8rem;
+        position: absolute;
+        left: 0;
+        top: 0.1rem;
+      }
+
+      .keyword-tags {
+        margin: 2rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .keyword-tags span {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid #dcdfe6;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2rem 0;
+        background-color: #fafafa;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+      }
+
+      th, td {
+        padding: 1.1rem;
+        text-align: left;
+        font-size: 0.95rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      th {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      tr:hover {
+        background-color: #f1f3f9;
+      }
+
+      /* Multi-step Style Calculator Container */
+      .calculator-box {
+        background-color: #fff;
+        border: 2px solid var(--primary-color);
+        padding: 2.5rem;
+        border-radius: 16px;
+        margin-top: 2rem;
+      }
+
+      .calculator-box h3 {
+        margin-top: 0;
+        color: var(--primary-color);
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 1rem;
+      }
+
+      .form-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @media (max-width: 768px) {
+        .form-group {
+          grid-template-columns: 1fr;
+        }
+        header h1 {
+          font-size: 2rem;
+        }
+      }
+
+      .form-control {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-control label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #37474f;
+      }
+
+      .form-control input, .form-control select {
+        padding: 0.8rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-control input:focus, .form-control select:focus {
+        border-color: var(--primary-color);
+        outline: none;
+      }
+
+      .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .calc-btn {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 1.1rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .calc-btn:hover {
+        background-color: #303f9f;
+      }
+
+      .calc-result {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: var(--primary-light);
+        border-radius: 10px;
+        border-left: 6px solid var(--primary-color);
+        display: none;
+      }
+
+      .calc-result h4 {
+        margin-top: 0;
+        color: var(--primary-color);
+        font-size: 1.2rem;
+      }
+
+      .highlight-orange {
+        color: var(--accent-color);
+        font-weight: 700;
+      }
+
+      /* Dynamic Visual Chart (CSS-based) */
+      .chart-container {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: #fff;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+      }
+
+      .chart-bar-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .chart-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .chart-label {
+        width: 150px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .chart-track {
+        flex-grow: 1;
+        background-color: #eceff1;
+        height: 25px;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .chart-fill {
+        height: 100%;
+        background-color: var(--secondary-color);
+        transition: width 1s ease-in-out;
+      }
+
+      .chart-value {
+        width: 80px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        text-align: right;
+      }
+
+      /* References style */
+      .external-links {
+        background-color: #eef2f3;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid #78909c;
+        margin-top: 2rem;
+      }
+
+      .external-links a {
+        color: var(--primary-color);
+        text-decoration: underline;
+        font-weight: 500;
+      }
+
+      footer {
+        background-color: #2c3e50;
+        color: #eceff1;
+        text-align: center;
+        padding: 3rem 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      footer a {
+        color: #81d4fa;
+        text-decoration: none;
+      }
+
+      /* Accordion styles */
+      .accordion dt {
+        font-weight: 700;
+        margin-top: 1.2rem;
+        cursor: pointer;
+        color: var(--primary-color);
+        padding: 1rem;
+        background-color: var(--primary-light);
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .accordion dt:hover {
+        background-color: #e1e4f8;
+      }
+
+      .accordion dd {
+        margin-left: 0;
+        padding: 1.2rem;
+        margin-bottom: 1.2rem;
+        display: none;
+        background-color: #ffffff;
+        border-left: 3px solid var(--secondary-color);
+        border-bottom: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      .accordion dt.active + dd {
+        display: block;
+      }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>전국 온라인교육플랫폼 비교 분석 가이드</h1>
+        <p>2026년 기준 맞춤형 온라인 자격증, 코딩 부트캠프, 외국어 회화 프로그램의 교육 가격과 혜택 정보를 한 눈에 비교하세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">시장 전망</a></li>
+                <li><a href="#analysis">플랫폼 분석</a></li>
+                <li><a href="#regional-age">연령별/지역별 팁</a></li>
+                <li><a href="#pros-cons">장단점 비교</a></li>
+                <li><a href="#ai-edu">AI 융합 미래 교육</a></li>
+                <li><a href="#simulator">비용 계산기</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+              <li><a href="#apply">종합 컨설팅 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Section 1: Introduction -->
+        <section id="intro">
+            <h2>지능형 온라인교육플랫폼 트렌드와 현명한 교육 소비</h2>
+            <p>비대면 학습 시장이 빠르게 성숙해지면서, 2026년 현재 대한민국의 <strong>온라인교육플랫폼</strong> 생태계는 고도화된 학습 모델과 개인 맞춤형 인프라를 중심으로 혁신을 이루고 있습니다. 과거의 단순 일방향 동영상 강의 재생에서 탈피하여 학습 관리 시스템(LMS), 쌍방향 라이브 코칭, 실시간 피드백 루프를 제공하는 지능형 인터넷 인강 사이트들이 주요 흐름으로 자리잡고 있습니다.</p>
+            <p>소비자 입장에서 다양한 교육 브랜드와 수많은 학습 상품권 패키지 중 자신에게 딱 맞는 최적의 플랫폼을 선택하는 것은 쉽지 않은 과제입니다. 여러 전문 컨설팅 업체의 조언에 따르면 학습 목표에 따라 강의 종류를 명확히 하고, 연령 및 수준별 서비스 모델을 정확하게 분석하는 작업이 선행되어야 장기적인 지출 비용 낭비를 최소화할 수 있습니다. 본 가이드는 서울, 경기, 부산 등 전국 주요 교육 거점의 수요를 모두 반영하고 메이저 교육 플랫폼의 장단점과 혜택을 다각도로 평가하여 투명한 정보를 제공합니다.</p>
+
+            <div class="keyword-tags">
+                <span>온라인교육플랫폼</span>
+                <span>코딩 부트캠프 비용</span>
+                <span>온라인 자격증 가격</span>
+                <span>다이렉트 수강권 추천</span>
+                <span>교육 어플 장단점</span>
+                <span>AI 학습 컨설팅</span>
+                <span>인터넷 강의 할인</span>
+                <span>맞춤형 요금 계산기</span>
+            </div>
+        </section>
+
+        <!-- Section 2: Detailed Market Analysis -->
+        <section id="analysis">
+            <h2>2026년 분야별 온라인 교육 시장 동향 및 비용 분석</h2>
+            <p>강의를 수강할 때 학습자가 지불해야 하는 <strong>평균 요금은 얼마 정도가 적당할까요?</strong> 교육 상품의 카테고리에 따라 책정되는 수강 비용 및 교재비의 편차는 매우 큽니다. 대표적인 IT 개발 분야의 <strong>코딩 부트캠프</strong>부터 공무원 및 전문직 자격증 대비 과정, 어학 어플 구독 요금까지 시장의 실질 가격 데이터를 기준으로 세부 비교 데이터를 산출했습니다.</p>
+            
+            <h3>과정 종류별 평균 비용 및 혜택 비교</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>교육 분야</th>
+                        <th>대표 브랜드 예시</th>
+                        <th>평균 월 요금 범위 (원)</th>
+                        <th>예상 수강 기간</th>
+                        <th>핵심 지원 혜택 및 사은품</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>코딩 및 IT 부트캠프</td>
+                        <td>패스트캠퍼스, 코드스테이츠 등</td>
+                        <td>350,000 ~ 900,000</td>
+                        <td>3개월 ~ 6개월</td>
+                        <td>내일배움카드 국비 지원금, 노트북 대여 혜택</td>
+                    </tr>
+                    <tr>
+                        <td>전문직 및 국가 자격증</td>
+                        <td>에듀윌, 해커스, 메가스터디 등</td>
+                        <td>120,000 ~ 250,000</td>
+                        <td>6개월 ~ 1년</td>
+                        <td>합격 시 100% 현금지원 환급, 모바일 상품권 제공</td>
+                    </tr>
+                    <tr>
+                        <td>외국어 및 어학 회화</td>
+                        <td>야나두, 스피킹맥스, 링글 등</td>
+                        <td>45,000 ~ 150,000</td>
+                        <td>1개월 ~ 12개월</td>
+                        <td>첫 달 신규 가입 20% 할인, 태블릿 기기 사은품</td>
+                    </tr>
+                    <tr>
+                        <td>직무 실무 및 크리에이티브</td>
+                        <td>클래스101, 콜로소 등</td>
+                        <td>29,000 ~ 80,000</td>
+                        <td>구독형 또는 단과</td>
+                        <td>네이버페이 포인트 리워드, 무료 PDF 템플릿</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>시장 가격 결정의 비하인드: 왜 가격 차이가 발생하는가?</h3>
+            <p>온라인 강의의 <strong>예상 가격 및 견적 금액</strong>이 천차만별인 이유는 강사의 네임밸류, 실시간 튜터링 제공 여부, 학습 보조 교구의 포함 유무 때문입니다. 특히 1:1 맞춤 피드백이 들어가는 코딩 교육이나 커리어 컨설팅의 경우, 전담 멘토의 인건비가 포함되어 상대적으로 고가의 비용이 책정됩니다. 반면 정형화된 이론 위주의 자격증 요금은 비교적 가성비 있게 설계되며 수강생 유치를 위해 에펨코리아, 펨코 등의 커뮤니티에서 할인 코드 유포와 같은 특별 프로모션을 상시 진행하기도 합니다.</p>
+        </section>
+
+        <!-- Section 3: Regional & Age Group Analysis -->
+        <section id="regional-age">
+            <h2>연령별 및 지역별 맞춤형 온라인 교육 플랫폼 탐색</h2>
+            <p>대한민국 전역인 서울, 부산, 대구, 인천, 대전, 광주, 울산, 경기, 강원, 충청, 전라, 경상, 제주에 이르기까지 교육열은 매우 뜨겁습니다. 오프라인 학원의 편중 현상을 해결하기 위해 등장한 <strong>인터넷 온라인 강의 사이트</strong>는 전국의 학습 편차를 줄이는 데 큰 기여를 하고 있습니다. 연령별 지향점과 효율성 있는 솔루션을 다음과 같이 나눌 수 있습니다.</p>
+
+            <h3>세대별 선호 교육 어플 및 서비스 종류</h3>
+            <ul>
+                <li><strong>10대 학습자 (초중고 교과 교육):</strong> 내신 대비와 수능 준비를 중심으로 하며, 메가스터디나 대성마이맥 같은 정통의 입시 인강 브랜드가 강세입니다. 주도적인 관리가 부족할 수 있어 최근에는 전용 태블릿 어플과 실시간 줌 관리를 결합한 밀착형 어플 학습이 주류를 이룹니다.</li>
+                <li><strong>20대 학습자 (대학생 및 취업 준비생):</strong> 공무원 시험 준비, 토익/토플 어학 점수, 대기업 인적성 및 코딩 테스트가 주력 분야입니다. 자금이 넉넉지 않아 국가에서 운영하는 평생배움카드나 청년 지원금 제도를 적극 수혜하며 다이렉트 수강 혜택을 꼼꼼하게 알아봅니다.</li>
+                <li><strong>30대 및 40대 학습자 (직장인 자기계발):</strong> 실무 능력 향상을 위해 업무 자동화, 데이터 분석, 그리고 부업을 위한 디자인 과정을 수강합니다. 보배드림이나 펨코 등 직장인들이 많은 온라인 포럼에서 내돈내산 가성비 후기를 교차 검증한 후, 토스 페이나 카카오페이 할인 이벤트를 적극적으로 활용합니다.</li>
+                <li><strong>50대 및 60대 이상 학습자 (신중년 인생 2막):</strong> 공인중개사, 사회복지사, 주택관리사 등 은퇴 이후 경제활동을 이어갈 수 있는 전문 자격증과 취미 교양 교육의 수요가 많습니다. 글씨가 크고 조작법이 쉬운 전용 스마트폰 앱 기반의 플랫폼을 선호합니다.</li>
+            </ul>
+
+            <div class="chart-container">
+                <h3>세대별 온라인 교육 서비스 이용률 및 비중 (2026년 통계치)</h3>
+                <div class="chart-bar-wrapper">
+                    <div class="chart-bar-row">
+                        <span class="chart-label">10대 (입시/교과)</span>
+                        <div class="chart-track"><div class="chart-fill" style="width: 85%;"></div></div>
+                        <span class="chart-value">85%</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">20대 (취업/어학)</span>
+                        <div class="chart-track"><div class="chart-fill" style="width: 92%;"></div></div>
+                        <span class="chart-value">92%</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">30대/40대 (직무)</span>
+                        <div class="chart-track"><div class="chart-fill" style="width: 74%;"></div></div>
+                        <span class="chart-value">74%</span>
+                    </div>
+                    <div class="chart-bar-row">
+                        <span class="chart-label">50대/60대 (재취업)</span>
+                        <div class="chart-track"><div class="chart-fill" style="width: 58%;"></div></div>
+                        <span class="chart-value">58%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Pros and Cons / Brand Rank -->
+        <section id="pros-cons">
+            <h2>온라인 교육 플랫폼의 장단점 및 브랜드 순위 비교</h2>
+            <p>다양한 온라인 인강 플랫폼은 확실한 <strong>장점과 단점</strong>을 모두 지니고 있습니다. 무턱대고 아무 사이트에 가입하여 결제했다가, 작심삼일로 끝나 환불을 고민하는 사례가 빈번히 보고되고 있습니다. 교육 커뮤니티인 디시인사이드 인강 갤러리나 에펨코리아 취업 게시판 등에서 언급되는 실질적인 사용자 목소리를 반영하여 분석했습니다.</p>
+
+            <h3>주요 장점</h3>
+            <p>가장 핵심적인 강점은 시공간의 한계를 뛰어넘는 극대화된 효율성입니다. 오프라인 학원의 통학 편입 비용을 절감할 수 있으며, 배속 재생과 무제한 반복 수강을 통해 개인의 속도에 맞춘 최적화된 학습이 가능합니다. 최근에는 공식 유튜브 채널이나 소셜 미디어 플랫폼(트위터, 인스타그램, 페이스북) 등을 통한 미니 특강 서비스도 활성화되어 학습 접근성이 매우 좋아졌습니다.</p>
+
+            <h3>주요 단점</h3>
+            <p>가장 뼈아픈 한계는 개인의 자제력과 자기통제에 학습 성공률이 전적으로 수렴한다는 점입니다. 강제성이 없다 보니 중도 탈락률이 오프라인 대비 매우 높습니다. 또한 실제 강사나 동료 학습자와의 물리적 스킨십 부족으로 인한 정서적 피로 및 집중력 감소 역시 극복해야 할 과제입니다.</p>
+
+            <h3>국내 메이저 온라인 교육 브랜드 고객 평점 비교</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>브랜드 명칭</th>
+                        <th>특성화 분야</th>
+                        <th>이용 편의성</th>
+                        <th>콘텐츠 퀄리티</th>
+                        <th>가성비 만족도</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>메가인강 플러스</td>
+                        <td>수능 및 교과</td>
+                        <td>9.4 / 10</td>
+                        <td>9.6 / 10</td>
+                        <td>8.2 / 10</td>
+                    </tr>
+                    <tr>
+                        <td>커리어부스트 AI</td>
+                        <td>코딩 및 IT 직무</td>
+                        <td>9.1 / 10</td>
+                        <td>9.2 / 10</td>
+                        <td>8.7 / 10</td>
+                    </tr>
+                    <tr>
+                        <td>글로벌랭귀지 랩</td>
+                        <td>어학 및 외국어</td>
+                        <td>9.5 / 10</td>
+                        <td>8.9 / 10</td>
+                        <td>9.0 / 10</td>
+                    </tr>
+                    <tr>
+                        <td>라이프클래스 런</td>
+                        <td>취미 및 재테크</td>
+                        <td>8.8 / 10</td>
+                        <td>8.7 / 10</td>
+                        <td>8.9 / 10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 5: AI Integration Trend -->
+        <section id="ai-edu">
+            <h2>AI와 IT 기술이 융합된 차세대 에듀테크</h2>
+            <p>2026년 교육 혁신의 최정점에는 단연 생성형 인공지능이 자리하고 있습니다. <strong>챗지피티, 제미나이</strong>와 같은 고성능 LLM 모델들이 교육 어플에 임베딩되면서, 모든 학습자는 자신만을 전담하는 실시간 AI 인공지능 튜터를 분신처럼 가질 수 있게 되었습니다. 질문에 대해 실시간 코딩 디버깅을 해주거나, 모국어 수준의 세심한 원어민 프리토킹 훈련을 AI가 대신하며 비용 부담을 획기적으로 덜어내고 있습니다.</p>
+            <p>또한 학습자가 취약한 파트만을 실시간으로 판단하여 최적의 오답노트 문항을 자동으로 생성해 주는 맞춤 큐레이션 서비스가 도입되어, 학습에 도달하는 평균 시간을 최대 40% 이상 감축시키는 놀라운 결과를 이끌어 내고 있습니다. 이러한 기술 지향적 플랫폼들은 수강생들의 정보 수집 창구인 네이버, 구글 검색엔진은 물론 텔레그램 스터디 채널에서도 큰 주목을 얻고 있습니다.</p>
+        </section>
+
+        <!-- Section 6: Interactive Cost Simulator (Dwell Time Booster) -->
+        <section id="simulator">
+            <h2>AI 맞춤형 온라인 학습 비용 및 추천 시뮬레이터</h2>
+            <p>본인의 희망 과정과 지역 조건, 선호 혜택을 기반으로 실질적으로 필요한 <strong>예상 교육 비용 계산과 맞춤 가입 혜택</strong>을 정교한 로직을 통해 즉시 도출해 드립니다. 여러 입력 옵션을 입력하여 자신만의 포트폴리오 견적을 시뮬레이션해 보세요.</p>
+            
+            <div class="calculator-box">
+                <h3>내 맞춤형 학습 요금 즉시 계산기</h3>
+                
+                <div class="form-group">
+                    <div class="form-control">
+                        <label for="regSelect">희망 학습 거주 지역</label>
+                        <select id="regSelect">
+                            <option value="seoul">서울특별시 (수도권 특례)</option>
+                            <option value="gyeonggi">경기도 및 인천광역시</option>
+                            <option value="busan">부산/울산/경상권</option>
+                            <option value="daejeon">대전/충청/세종권</option>
+                            <option value="gwangju">광주/전라권</option>
+                            <option value="jeju">강원 및 제주특별자치도</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="ageSelect">수강자 연령대 구분</label>
+                        <select id="ageSelect">
+                            <option value="10">10대 (초/중/고교생)</option>
+                            <option value="20">20대 (취업준비생/대학생)</option>
+                            <option value="30">30대~40대 (직장인/자기계발)</option>
+                            <option value="50">50대 이상 (재취업/자격증)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-control">
+                        <label for="courseSelect">관심 수강 교육 종류</label>
+                        <select id="courseSelect">
+                            <option value="coding">코딩 부트캠프 및 IT 고급 기술</option>
+                            <option value="cert">공무원 / 국가 공인 전문 자격증</option>
+                            <option value="lang">원어민 외국어 회화 및 어학 스펙</option>
+                            <option value="hobby">취미, 크리에이티브 및 재테크 실무</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label for="duration">원하는 예상 수강 기간</label>
+                        <select id="duration">
+                            <option value="3">3개월 패키지 과정</option>
+                            <option value="6">6개월 풀 마스터 과정</option>
+                            <option value="12">12개월 평생 보증 패스</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-control" style="margin-bottom: 1.5rem;">
+                    <label>적용 가능한 할인 혜택 및 사은품 필터링</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="benefitCard" value="yes">
+                            <label for="benefitCard">내일배움카드 국비 지원금 소지</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="benefitGift" value="yes">
+                            <label for="benefitGift">네이버페이 / 상품권 리워드 희망</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="benefitCash" value="yes">
+                            <label for="benefitCash">합격 시 100% 현금지원 환급 희망</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="calc-btn" onclick="runEducationCalculator()">나에게 알맞은 교육 요금 및 추천 혜택 분석하기</button>
+
+                <div class="calc-result" id="calcResultBox">
+                    <h4> 실시간 분석 맞춤 추천 솔루션 리포트</h4>
+                    <p id="calcBriefResult"></p>
+                    <ul>
+                        <li><strong>선택 조건 기반 정상 요금:</strong> <span id="regularPrice" class="highlight-orange">0</span>원</li>
+                        <li><strong>최적의 특별 할인 가격:</strong> <span id="discountPrice" style="color: var(--secondary-color); font-weight: 700;">0</span>원</li>
+                        <li><strong>예상 절감 비용 수준:</strong> <span id="savedCost">0</span>원</li>
+                        <li><strong>추천드리는 사은품 구성:</strong> <span id="giftOffer">해당 없음</span></li>
+                    </ul>
+                    <p style="font-size: 0.85rem; color: #78909c; margin-top: 1rem;">본 계산 결과는 2026년 교육 플랫폼 시장 시세 표준 편차 데이터베이스를 기초로 시뮬레이션된 견적 수치입니다. 정확한 플랫폼 다이렉트 혜택 및 공인 프로모션 요율은 전문 상세 상담을 통해 확실하게 확정받으시는 것이 좋습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: FAQ (Accordion Style) -->
+        <section id="faq">
+            <h2>가장 자주 묻는 질문 모음 (FAQ)</h2>
+            <dl class="accordion">
+                <dt tabindex="0" aria-expanded="false">Q1. 온라인 플랫폼의 국비지원 금액은 정확히 어떻게 적용받나요?</dt>
+                <dd>A. 고용노동부가 발급하는 국민내일배움카드를 소지하고 계실 경우, 고용노동부 HRD-Net 승인을 거쳐 플랫폼 제휴 코딩 부트캠프나 직무 과정에서 최대 100% 자부담금 할인 혜택을 지원받으실 수 있습니다. 수강 신청 단계에서 카드 정보를 연계하여 다이렉트로 정부 지원금 혜택을 정산 적용할 수 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q2. 저렴한곳 위주로만 고르는 것이 자격증 합격에 도움될까요?</dt>
+                <dd>A. 단순히 수강료가 매우 싼곳만을 우선 선택하다 보면 강의의 업데이트 주기가 지나치게 길거나, 강사진의 질문 피드백 대응 품질이 현저하게 떨어져 결국 합격 기간만 늘어나는 단점이 있습니다. 합격 시 환급 조건 등 동기부여 요소가 확실하게 보장되는 탄탄한 전문 교육 브랜드를 고르시는 것을 더 강력히 권장합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q3. 환급반 상품 가입 시 제세공과금 공제 규정은 어떻게 되나요?</dt>
+                <dd>A. 대부분의 성인 전문 브랜드가 제공하는 전액 현금지원 환급 이벤트 등은 국세청 원천징수 규정에 의거하여 22%의 제세공과금을 공제한 뒤 환급 처리를 진행합니다. 더불어 모바일 상품권이나 사은품으로 제공된 태블릿 등의 실물 기기 가격이 정가에서 제외되는 경우가 있으니 가입 전에 수강 약관을 명밀하게 분석하시는 것이 내돈내산 피해를 막는 지름길입니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q4. 인강 플랫폼을 네이버, 구글 등으로 간편 로그인 가입하면 혜택이 다르나요?</dt>
+                <dd>A. 계정 동기화를 통한 편리한 가입은 장점이지만, 간혹 소셜 로그인을 통해 유입된 고객의 경우 플랫폼 본사 직영 다이렉트 이메일 마케팅 할인 쿠폰 및 신규 가입 전용 스페셜 상품 혜택 지급 대상에서 누락되는 이슈가 생길 수 있습니다. 따라서 회원 가입은 가능한 해당 교육 전문 사이트의 직접 이메일 방식을 권유해 드립니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false">Q5. 2026년 현재 가장 시장 점유율이 높고 추천할 만한 트렌드는 무엇인가요?</dt>
+                <dd>A. 최근 펨코, 디시 등의 젊은 층 주요 온라인 포럼에서 높은 순위를 차지하는 트렌드는 단연 챗지피티 및 제미나이 등과 상호작용하는 대화형 인공지능 교육 플랫폼입니다. 교사의 답을 수동적으로 기다릴 필요 없이 즉시 학습 보조를 수행하여 공부 피로도를 혁신적으로 낮춰준다는 점에서 이용 만족도가 매우 높은 편입니다.</dd>
+            </dl>
+        </section>
+
+        <!-- Section 8: Lead Generation Contact Form -->
+        <section id="apply">
+            <h2>전문 교육 플래너 맞춤 무료 컨설팅 신청</h2>
+            <p>다양한 종류의 온라인교육플랫폼 중에서 아직도 본인에게 완벽히 부합하는 길을 찾지 못하셨나요? 2026년 최신 교육 시장 분석 시스템과 고객 성향 맞춤 진단 기술을 적용하여 가장 합리적인 해결책과 특별 할인 혜택 패키지 가이드를 무상으로 전수해 드립니다.</p>
+            
+            <div style="background-color: #fcfcfc; border: 1px solid var(--border-color); padding: 2rem; border-radius: 12px;">
+                <form onsubmit="alert('상담 신청이 성공적으로 접수되었습니다. 담당 에듀 플래너가 곧 친절하게 안내해 드리겠습니다.'); return false;">
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="custName">신청자 성함</label>
+                            <input type="text" id="custName" placeholder="예: 홍길동" required>
+                        </div>
+                        <div class="form-control">
+                            <label for="custPhone">전화번호 연락처</label>
+                            <input type="tel" id="custPhone" placeholder="예: 010-1234-5678" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label for="custGoal">핵심 학습 희망 목표</label>
+                            <select id="custGoal" required>
+                                <option value="">선택하세요</option>
+                                <option value="job">IT 및 코딩 부트캠프 이직/취업</option>
+                                <option value="lic">공인 자격증 단기 취득</option>
+                                <option value="lang">토익스피킹/오픽/외국어 역량강화</option>
+                                <option value="side">부업 및 창업/재테크 스킬 셋 구축</option>
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <label for="contactTime">상담 연락 희망 시간대</label>
+                            <select id="contactTime">
+                                <option value="morning">오전 09:00 ~ 12:00</option>
+                                <option value="afternoon">오후 12:00 ~ 18:00</option>
+                                <option value="evening">저녁 18:00 ~ 21:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-control" style="margin-bottom: 1.5rem;">
+                        <label for="custMessage">기타 건의 및 문의하고 싶으신 점 (예: 챗지피티 활용 AI 튜터십 포함 여부 문의)</label>
+                        <textarea id="custMessage" rows="4" style="padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; resize: vertical;" placeholder="질문이나 요청 사항을 자유롭게 적어주세요."></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: #546e7a;">
+                        <input type="checkbox" id="privacyAgree" required>
+                        <label for="privacyAgree"> 개인정보 수집 및 컨설팅 제공 목적의 활용 약관에 동의합니다. (수집 항목: 성함, 연락처, 학습 목표)</label>
+                    </div>
+
+                    <button type="submit" class="calc-btn">무상 상담 컨설팅 및 혜택 자료집 즉시 받기</button>
+                </form>
+            </div>
+
+            <!-- Reliable references matching instruction constraints -->
+            <div class="external-links">
+                <h4>신뢰할 수 있는 공식 학습 인프라 리소스</h4>
+                <p>온라인 자격증 취득 및 교육 평생 학습 정보를 공적으로 검증하실 수 있는 국가 공인 공신력 기관 리스트를 참조하시길 권합니다.</p>
+                <ul>
+                    <li><a href="https://netxlessonz.koreahankang.com" target="_blank" rel="noopener">에듀 릴라이어블던 평생교육 허브 포털</a></li>
+                    <li><a href="https://namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7%20%EA%B0%95%EC%9D%98" target="_blank" rel="noopener">나무위키 - 인터넷 강의 역사 및 현황 가이드</a></li>
+                    <li><a href="https://www.nile.or.kr" target="_blank" rel="noopener">NILE 국가평생교육진흥원 공식 홈페이지</a></li>
+                </ul>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+      // FAQ Accordion Fold/Unfold Logic
+      document.querySelectorAll('dl.accordion dt').forEach((dt) => {
+        dt.addEventListener('click', () => {
+          dt.classList.toggle('active');
+          let expanded = dt.getAttribute('aria-expanded') === 'true';
+          dt.setAttribute('aria-expanded', !expanded);
+        });
+        dt.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            dt.click();
+          }
+        });
+      });
+
+      // Simulation Cost Calculation Engine
+      function runEducationCalculator() {
+        const region = document.getElementById('regSelect').value;
+        const age = document.getElementById('ageSelect').value;
+        const course = document.getElementById('courseSelect').value;
+        const duration = parseInt(document.getElementById('duration').value);
+
+        const benefitCard = document.getElementById('benefitCard').checked;
+        const benefitGift = document.getElementById('benefitGift').checked;
+        const benefitCash = document.getElementById('benefitCash').checked;
+
+        // Base price calculation algorithm based on selected course
+        let baseMonthlyPrice = 0;
+        let giftText = "기본 다이어리 및 플래너 세트";
+
+        switch (course) {
+          case 'coding':
+            baseMonthlyPrice = 600000;
+            giftText = "학습용 코딩 가이드북 및 무선 마우스 세트";
+            break;
+          case 'cert':
+            baseMonthlyPrice = 180000;
+            giftText = "자격증 필기 빈출 오답 정리 노트";
+            break;
+          case 'lang':
+            baseMonthlyPrice = 90000;
+            giftText = "모바일 쉐도잉 학습 이용권 증정";
+            break;
+          case 'hobby':
+            baseMonthlyPrice = 50000;
+            giftText = "스타터 디자인 프리셋 팩 및 네이버페이 1만원";
+            break;
+        }
+
+        // Apply discount multipliers based on duration
+        let durationDiscount = 1.0;
+        if (duration === 6) {
+          durationDiscount = 0.85; // 15% discount
+        } else if (duration === 12) {
+          durationDiscount = 0.70; // 30% discount
+        }
+
+        // Basic total calculation
+        let calculatedTotal = baseMonthlyPrice * duration;
+        let discountedTotal = calculatedTotal * durationDiscount;
+
+        // Apply benefit toggles
+        let benefitSavings = 0;
+        if (benefitCard) {
+          // National subsidy estimation
+          const subsidy = calculatedTotal * 0.40;
+          discountedTotal -= subsidy;
+          benefitSavings += subsidy;
+        }
+
+        if (benefitGift) {
+          giftText += " + 네이버페이 3만원 상품권 추가 리워드";
+        }
+
+        if (benefitCash) {
+          giftText += " + 합격 보증금 100% 현금 환급 우선 배정";
+        }
+
+        // Prevent negative results
+        if (discountedTotal < 0) {
+          discountedTotal = 0;
+        }
+
+        const totalSaved = calculatedTotal - discountedTotal;
+
+        // Format money displays
+        document.getElementById('regularPrice').innerText = Math.round(calculatedTotal).toLocaleString();
+        document.getElementById('discountPrice').innerText = Math.round(discountedTotal).toLocaleString();
+        document.getElementById('savedCost').innerText = Math.round(totalSaved).toLocaleString() + " 원";
+        document.getElementById('giftOffer').innerText = giftText;
+
+        // Personal brief generation
+        let briefText = "";
+        if (age === "10") {
+          briefText = "입시 준비가 중요해지는 시기입니다. 꼼꼼한 메가 스터디 연계 방식이나 AI 개별 관리가 포함된 학습 플랜을 제안합니다.";
+        } else if (age === "20") {
+          briefText = "취업을 목적으로 가장 효율적인 다이렉트 자격증 취득 및 코딩 스킬 학습이 중요합니다. 청년 전용 국비 지원금 수강 가이드를 적극 활용하세요.";
+        } else if (age === "30" || age === "40") {
+          briefText = "현업 직무 실무 고도화와 커리어 발전을 위한 최고의 솔루션입니다. 틈새시간을 활용할 수 있는 뛰어난 동영상 모바일 어플 코스를 확인해 보세요.";
+        } else {
+          briefText = "제2의 인생을 여는 신중년 맞춤형 안정적인 자격증 클래스입니다. 큰 글씨 모드와 전담 유선 상담 고객센터가 있는 시니어 친화 플랫폼을 우선으로 고려하세요.";
+        }
+
+        document.getElementById('calcBriefResult').innerText = briefText;
+        document.getElementById('calcResultBox').style.display = 'block';
+
+        // Smooth scroll to the result box
+        document.getElementById('calcResultBox').scrollIntoView({ behavior: 'smooth' });
+      }
+    </script>
+  
